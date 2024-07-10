@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Praetorians United Football Club{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'img/club_logo.ico' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="hea">
+    <header >
+        <a class="logo" href="">
+                <img src="" alt="Logo" style="width: 60px; height: 60px; margin-right: 10px;">
+                Khela Hobe
+        </a>
+        <nav class="navbar" >
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="">Fixtures</a></li>
+                <li><a href="">Shop + </a>
+                    <ul>
+                        <li><a href="">Jersey</a></li>
+                        <li><a href="">Accessories</a></li>
+                        <li><a href="">Turf</a></li>
+
+                    </ul>
+                </li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'check_player_profile' %}">Players</a></li>
+                {%endif%}
+                {% if not user.is_authenticated %}
+                <li><a href="">Contact</a></li>
+                {% endif %}
+                {% if request.user.player %}
+                <li><a href="">Team</a>
+                    <ul>
+                        {% if not request.user.player.team %}
+                        <li><a href="{% url 'create_team' %}">Create Team</a></li>
+                        {%endif%}
+                        {% if request.user.player.team %}
+                        {% for team in teams %}
+                        <li><a href="{% url 'team_profile' team.id %}">{{ team.name }}</a></li>
+                        {%endfor%}
+                        {%endif%}
+                    </ul>
+                </li>
+
+                {% endif %}
+                {% if user.is_authenticated and user.player and user.player.team %} 
+                <li><a href="">Challenge</a></li>
+                {%endif%}
+                {% if user.is_authenticated %}
+                <li>
+                <a class="logo" href="">
+                    {% if user.profile.avatar %}
+                    <img src="{{ user.profile.avatar.url }}" alt="Avatar" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 5px;">
+                    {% else %}
+                    <span class="fa fa-user-circle-o fa-lg"></span>
+                    {% endif %}
+                    {{ user.username }}
+                </a>
+                <ul>
+                    <li>
+                        <a href="">Profile</a>
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="dropdown-item white-text">Logout</button>
+                    </form>
+                    
+                    </li>
+                    <li></li>
+                </ul>
+            </li>
+                {%else%}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Signup</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    
+    </header>
+
+</body>
+</html>
+
+

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+
+<h1>{{ team.name }}</h1>
+    <p>Description: {{ team.description }}</p>
+    {% if team.logo %}
+    <img src="{{ team.logo.url }}" alt="{{ team.name }} Logo">
+    {% endif %}
+    
+    <h2>Team Members</h2>
+    <ul>
+        {% for player in team.player_set.all %}
+        <li>
+            <img src="{{ player.img.url }}" alt="{{ player.name }} Image">
+            <p>Name: {{ player.name }}</p>
+            <p>Position: {{ player.get_position_display }}</p>
+            <p>Rating: {{ player.rating }}</p>
+        </li>
+        {% empty %}
+        <li>No players in this team yet.</li>
+        {% endfor %}
+    </ul>
+    
+{%endblock%}

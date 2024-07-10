@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+
+
+    <section class="intro-section">
+
+        <div class="intro-container">
+            <h1>Your gateway to the latest fixtures, player info, and more!</h1>
+        </div>
+
+    </section>
+    <section class="fixture-section">
+        <div class="fixture-container">
+            <h2>Latest Fixtures</h2>
+            <p>Stay updated with the latest matches and results.</p>
+            <div class="fixture-row">
+                {% for fix in fixtures %}
+                <div class="fixture-col-md-4 mb-4">
+                    <div class="fixture-card">
+                        <div class="fixture-card-body">
+                            <h5 class="fixture-card-title">{{ fix.date }}</h5>
+                            <p class="fixture-card-text"><strong>Opponent:</strong> {{ fix.opponent }}</p>
+                            <p class="fixture-card-text"><strong>Location:</strong> {{ fix.location }}</p>
+                            <p class="fixture-card-text"><strong>Match:</strong> {{ fix.match }}</p>
+                            <p class="fixture-card-text"><strong>Home/Away:</strong> {{ fix.type }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <a href="" class="fixture-btn ">See More Fixtures</a>
+        </div>
+    </section>
+
+    
+    <section class="player-section">
+        <div class="player-container">
+            <h2>Meet Our Players</h2>
+            <h4>Get to know the stars of the team.</h4>
+            <!-- Example player cards -->
+            <div class="player-row">
+                {% for player in players %}
+                <div class="player-col-md-4">
+                    <div class="player-card">
+                        <img src="{{ player.img.url }}" class="player-card-img-top" alt="Player 1">
+                        <div class="player-card-body">
+                            <h5 class="player-card-title">{{ player.name }}</h5>
+                            <p class="player-card-text">Position: {{ player.position }}</p>
+                            <a href="{% url 'player_detail' player.pk %}" class="player-list-btn btn-primary">See Full Info</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <a href="" class="player-btn btn-primary">See More Players</a>
+        </div>
+    </section>
+    
+        <section class="news-section">
+            <div class="news-container">
+                <h2>Club News</h2>
+                <p>Latest updates and announcements from the club.</p>
+                <div class="news-row">
+                    {% for item in news %}
+                    <div class="news-col-md-4">
+                        <div class="news-card mb-4">
+                            <a href="">
+                            <img src="{{ item.image.url }}" class="news-card-img-top" alt="{{ item.title }}">
+                            </a>
+                            <div class="news-card-body">
+                                <h5 class="news-card-title">{{ item.title }}</h5>
+                                <p class="news-card-text">{{ item.description|truncatewords:20 }}</p>
+                                <a href="" class="news-btn btn-primary">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <a href="" class="news-btn btn-primary">See More News</a>
+            </div>
+        </section>
+
+{% endblock %}

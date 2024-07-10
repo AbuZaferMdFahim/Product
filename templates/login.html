@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}  
+
+    {% if messages %}
+        {% for message in messages %}
+            <div>{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    
+    <div class="login-container mt-5">
+        <div class="login-row justify-content-center">
+            <div class="login-col-md-6">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="login-form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" class="login-form-control" id="username" name="username" required>
+                    </div>
+                    <div class="login-form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" class="login-form-control" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="login-btn btn-primary">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

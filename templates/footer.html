@@ -1,0 +1,48 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer Example</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-row">
+                <div class="footer-col-md-4">
+                    <h5>About Us</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                </div>
+                <div class="footer-col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="footer-list-unstyled">
+                        <li><a href="" class="footer-text-white">Home</a></li>
+                        <li><a href="" class="footer-text-white">Fixtures</a></li>
+                        <li><a href="" class="footer-text-white">Shop</a></li>
+                        <li><a href="" class="footer-text-white">Player</a></li>
+                        <li><a href="" class="footer-text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col-md-4">
+                    <h5>Contact Us</h5>
+                    <address>
+                        123 Main Street<br>
+                        City, State 12345<br>
+                        <a href="tel:+1234567890" class="footer-text-white">+1 (234) 567-890</a><br>
+                        <a href="" class="footer-text-white">mail</a>
+                    </address>
+                </div>
+            </div>
+            <div class="footer-row mt-3">
+                <div class="footer-col text-center">
+                    <p class="tect-center">&copy; 2024 Praetorians United. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+ <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
