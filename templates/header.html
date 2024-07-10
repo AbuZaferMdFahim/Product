@@ -39,9 +39,7 @@
                         <li><a href="{% url 'create_team' %}">Create Team</a></li>
                         {%endif%}
                         {% if request.user.player.team %}
-                        {% for team in teams %}
-                        <li><a href="{% url 'team_profile' team.id %}">{{ team.name }}</a></li>
-                        {%endfor%}
+                        <li><a href="{% url 'team_profile' request.user.player.team.id %}">{{ request.user.player.team.name }}</a></li>
                         {%endif%}
                     </ul>
                 </li>
