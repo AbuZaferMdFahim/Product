@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+
+<div class="player-profile-create-container">
+    <h2>Create Manager Profile</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="player-profile-create-form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="player-profile-create-form-group">
+            <label for="bio">Bio:</label>
+            <textarea id="bio" name="bio" rows="4" placeholder="Enter your bio"></textarea>
+        </div>
+        <div class="player-profile-create-form-group">
+            <label for="kit">Role:</label>
+            <input type="text" id="role" name="role" required>
+        </div>
+        <div class="player-profile-create-form-group">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+        </div>
+        <div class="player-profile-create-form-group">
+            <label for="img">Manager Image:</label>
+            <input type="file" id="img" name="img" accept="image/*" required>
+        </div>
+        <div class="player-profile-create-form-group">
+            <label for="NID_number">NID Number:</label>
+            <input type="text" id="NID_number" name="NID_number" required>
+        </div>
+        <div class="player-profile-create-form-group">
+            <label for="nationality">Nationality:</label>
+            <input type="text" id="nationality" name="nationality" required>
+        </div>
+        <div class="player-profile-create-form-group">
+            <label for="nationality_image">Nationality Image:</label>
+            <input type="file" id="nationality_image" name="nationality_image" accept="image/*" required>
+        </div>
+        <button class="player-profile-create-btn btn-primary" type="submit">Create Profile</button>
+    </form>
+</div>
+
+{% endblock %}

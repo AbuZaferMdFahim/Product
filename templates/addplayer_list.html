@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+
+<h1>Player List</h1>
+
+<div class="player-all-list">
+    {% for player in players %}
+    {% if player.team == team %}
+    <div class="player-all-card">
+        <div class="player-all-image">
+            <img src="{{ player.img.url }}" alt="{{ player.name }} Image">
+        </div>
+        <div class="player-all-list-info">
+            <h2>{{ player.name }}</h2>
+            <p><strong>Position:</strong> {{ player.get_position_display }}</p>
+            <p><strong>Age:</strong> {{ player.age }}</p>
+            <p><strong>Rating:</strong> {{ player.rating }}</p>
+            <p><strong>Bio:</strong> {{ player.bio }}</p>
+            <p><strong>Team:</strong> 
+                {% if player.team %}
+                    {{ player.team.name }}
+                {% else %}
+                    Not assigned
+                {% endif %}
+            </p>
+            <div class="player-all-list-actions">
+                <a href="">Request to Join Team</a>
+            </div>
+        </div>
+    </div>
+    {% endif%}
+    {% endfor %}
+</div>
+
+{% endblock %}

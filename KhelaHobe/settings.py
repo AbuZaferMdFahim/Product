@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'Main',
     'Player',
     'Team',
+    'Manager',
     
 ]
 

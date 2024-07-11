@@ -3,10 +3,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 # Create your views here.
-
-
-
-
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Player
@@ -76,3 +72,10 @@ def player_profile_create(request):
         }
         return render(request, 'player_profile_create.html', context)
 
+@login_required
+def addplayer_list(request):
+    players = Player.objects.all()
+    context = {
+        'players': players,
+    }
+    return render(request, 'addplayer_list.html', context)

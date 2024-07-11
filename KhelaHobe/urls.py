@@ -25,6 +25,7 @@ urlpatterns = [
     path('user/',include('User.urls')),
     path('player/',include('Player.urls')),
     path('team/',include('Team.urls')),
+    path('manager/',include('Manager.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT) 

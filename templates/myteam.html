@@ -3,24 +3,36 @@
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
 
-<h1>{{ team.name }}</h1>
-    <p>Description: {{ team.description }}</p>
+<div class="team-details">
+    <h1 class="myteam-h1">{{ team.name }}</h1>
+    <p class="myteam-p">Description: {{ team.description }}</p>
     {% if team.logo %}
-    <img src="{{ team.logo.url }}" alt="{{ team.name }} Logo">
+    <img class="myteam-img" src="{{ team.logo.url }}" alt="{{ team.name }} Logo">
     {% endif %}
-    
-    <h2>Team Members</h2>
-    <ul>
-        {% for player in team.player_set.all %}
-        <li>
-            <img src="{{ player.img.url }}" alt="{{ player.name }} Image">
-            <p>Name: {{ player.name }}</p>
-            <p>Position: {{ player.get_position_display }}</p>
-            <p>Rating: {{ player.rating }}</p>
+</div>
+
+<div class="team-members">
+    <div class="clearfix">
+        <h2 class="myteam-h2" style="float: left;">Team Members</h2>
+        <a href="{% url 'addplayer_list' %}" class="btn btn-primary" style="float: right;">See All Player</a>
+    </div>
+        {% for player in players %}
+        {% if player.team == team %}
+        <li class="myteam-li">
+            <div class="player-info">
+                <img class="myteam-img" src="{{ player.img.url }}" alt="{{ player.name }} Image">
+                <div class="player-details">
+                    <p class="myteam-p">Name: {{ player.name }}</p>
+                    <p class="myteam-p">Position: {{ player.get_position_display }}</p>
+                    <p class="myteam-p rating">Rating: {{ player.rating }}</p>
+                </div>
+            </div>
         </li>
+        {% endif %}
         {% empty %}
-        <li>No players in this team yet.</li>
+        <li class="myteam-li">No players in this team yet.</li>
         {% endfor %}
     </ul>
-    
+</div>
+
 {% endblock %}

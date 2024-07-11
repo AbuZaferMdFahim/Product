@@ -1100,79 +1100,127 @@ footer {
 }
 
 /* Profiel page */
-
+/* Styles for profile page */
 .profile-container {
     margin-top: 100px;
     max-width: 800px;
-    margin: 20px auto;
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
+    margin: 0 auto;
     padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-/* Styling for the profile header */
 .profile-header {
-    margin-top: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 10px;
+    margin-top: 100px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
     margin-bottom: 20px;
 }
 
-/* Styling for the profile info section */
 .profile-info {
     display: flex;
-    flex-direction: column;
-    width: 70%;
+    justify-content: space-between;
+    align-items: center;
 }
 
-/* Styling for the top section containing user details and avatar */
 .profile-header-top {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
 }
 
-/* Styling for user details */
 .profile-user-details {
     flex: 1;
-    margin-right: 20px;
 }
 
 .profile-user-details h1 {
-    font-size: 24px;
-    margin-bottom: 8px;
+    font-size: 2em;
+    margin-bottom: 5px;
 }
 
 .profile-user-details h2 {
-    font-size: 18px;
-    margin-bottom: 8px;
-    color: #333;
+    font-size: 1.2em;
+    color: #666;
+    margin-top: 10px;
 }
 
 .profile-user-details p {
-    margin-bottom: 12px;
-    line-height: 1.6;
+    margin: 5px 0;
 }
 
-/* Styling for avatar container */
 .profile-avatar-container {
-    width: 30%;
-    text-align: center;
+    width: 150px;
+    height: 150px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px #fff, 0 0 0 6px #007bff; /* Customize border and shadow */
 }
 
 .profile-avatar {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    margin-bottom: 10px;
-    border: 2px solid #fff; /* Optional: Add a border for better contrast */
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
+
+.avatar-upload {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.avatar-upload-label {
+    display: block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.avatar-upload-label:hover {
+    background-color: #0056b3;
+}
+
+.profile-details, .profile-actions {
+    margin-top: 20px;
+}
+
+.profile-details h2, .profile-actions h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.profile-details p {
+    margin-bottom: 5px;
+}
+
+.profile-actions ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.profile-actions ul li {
+    margin-bottom: 10px;
+}
+
+.profile-actions ul li a {
+    text-decoration: none;
+    color: #007bff;
+    transition: color 0.3s;
+}
+
+.profile-actions ul li a:hover {
+    color: #0056b3;
+}
+
+
+
+
 
 
 /* edit_profile */
@@ -2011,3 +2059,137 @@ footer {
 
 
 
+
+/* Base styles */
+
+
+.myteam-h1, .myteam-h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.myteam-p {
+    margin: 5px 0;
+}
+
+.myteam-ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.myteam-li {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.myteam-li:last-child {
+    margin-bottom: 0;
+}
+
+.myteam-img {
+    width: 100px; /* Adjust size as needed */
+    height: 100px; /* Adjust size as needed */
+    border-radius: 50%; /* Make the image round */
+    margin-right: 10px;
+    float: left;
+}
+
+.rating {
+    font-weight: bold;
+}
+
+/* Specific section styles */
+
+.team-details {
+    margin-top: 100px;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.team-members {
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.player-info {
+    overflow: hidden; /* Clear floats */
+}
+
+.player-details {
+    float: left;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+
+
+
+/* Styles for player list page */
+/* Styles for player list page */
+.player-all-list {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.player-all-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 15px;
+    width: 250px; /* Adjust width to make it smaller */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.player-all-card:hover {
+    transform: scale(1.05);
+}
+
+.player-all-image img {
+    width: 100%;
+    height: 100px;
+    border-radius: 10px 10px 0 0;
+}
+
+.player-all-list-info {
+    padding: 10px; /* Reduce padding to make the card smaller */
+    text-align: center;
+}
+
+.player-all-list-info h2 {
+    font-size: 1.2em; /* Adjust font size to make it smaller */
+    margin: 5px 0; /* Reduce margin */
+}
+
+.player-all-list-info p {
+    margin: 3px 0; /* Reduce margin */
+}
+
+.player-all-list-actions {
+    margin-top: 10px; /* Reduce margin */
+}
+
+.player-all-list-actions a {
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    padding: 8px 12px; /* Adjust padding to make the button smaller */
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+.player-all-list-actions a:hover {
+    background-color: #0056b3;
+}

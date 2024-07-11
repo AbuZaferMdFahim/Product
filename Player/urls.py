@@ -10,6 +10,7 @@ urlpatterns = [
     path('create_player_profile/', views.create_player_profile, name='create_player_profile'),
     path('player_profile/', views.player_profile, name='player_profile'),
     path('player_profile_create/', views.player_profile_create, name='player_profile_create'),
+    path('addplayer_list/', views.addplayer_list, name='addplayer_list'),
 
 ] 
 if settings.DEBUG:

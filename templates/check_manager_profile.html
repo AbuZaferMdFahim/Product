@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Check Player Profile{% endblock %}
+{% block content %}
+
+
+    <div class="warning">
+        <p>You currently don't have a Manager profile. Are you sure you want to create one?</p>
+        <a href="{% url 'create_manager_profile' %}">Yes</a>
+        <a href="{% url 'home' %}">No</a>
+    </div>
+
+{% endblock %}

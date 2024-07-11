@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import  Team
+from Manager.models import Manager
 from Player.models import Player
 
 @login_required
@@ -21,11 +22,11 @@ def create_team(request):
         )
 
         # Associate the created team with the current player
-        player = Player.objects.get(user=request.user)
-        player.team = team
-        player.save()
+        manager = Manager.objects.get(user=request.user)
+        manager.team = team
+        manager.save()
 
-        return redirect('player_profile')  # Redirect to player profile page after team creation
+        return redirect('manager_profile')  # Redirect to player profile page after team creation
 
     return render(request, 'create_team.html')
 
@@ -33,9 +34,11 @@ def create_team(request):
 def team_profile(request, team_id):
     # Fetch the team object using the team_id from URL parameter
     team = get_object_or_404(Team, pk=team_id)
+    players = Player.objects.all() 
 
     data = {
-        "team":team
+        "team":team,
+        "players":players
     }
     
     # Render the team profile template with the team object

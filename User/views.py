@@ -4,6 +4,8 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponseNotAllowed
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import update_session_auth_hash
 
 # Create your views here.
 def signup(request):
@@ -74,3 +76,74 @@ def logout_view(request):
         return redirect('login') 
     else:
         return HttpResponseNotAllowed(['POST'])
+    
+@login_required
+def profile(request):
+    profile = request.user.profile
+    data ={
+        'profile':profile
+    }
+    return render(request, 'profile.html', data)
+
+@login_required
+def edit_profile(request):
+    profile = request.user.profile
+
+    if request.method == 'POST':
+        bio = request.POST.get('bio', '')
+        email = request.POST.get('email', '')
+        mobile = request.POST.get('mobile', '')
+
+        # Update profile data
+        profile.bio = bio
+        request.user.email = email
+        profile.mobile = mobile
+        
+        if 'avatar' in request.FILES:
+            profile.avatar = request.FILES['avatar']
+
+        # Save the changes
+        profile.save()
+        request.user.save()
+
+        messages.success(request, 'Profile updated successfully.')
+        return redirect('profile')
+
+    # If it's a GET request, render the edit profile page with current data
+    data = {
+        'profile': profile
+    }
+    return render(request, 'edit_profile.html', data)
+
+@login_required
+def change_photo(request):
+    profile = request.user.profile
+
+    if request.method == 'POST' and request.FILES.get('avatar'):
+        profile.avatar = request.FILES['avatar']
+        profile.save()
+        messages.success(request, 'Profile photo updated successfully.')
+    else:
+        messages.error(request, 'Failed to update profile photo.')
+
+    return redirect('profile')
+
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        old_password = request.POST.get('old_password')
+        new_password = request.POST.get('new_password')
+        confirm_password = request.POST.get('confirm_password')
+
+        if not request.user.check_password(old_password):
+            messages.error(request, 'Old password is incorrect.')
+        elif new_password != confirm_password:
+            messages.error(request, 'New passwords do not match.')
+        else:
+            request.user.set_password(new_password)
+            request.user.save()
+            update_session_auth_hash(request, request.user)  # Important, to keep the user logged in
+            messages.success(request, 'Your password has been successfully changed!')
+            return redirect('profile')
+
+    return render(request, 'change_password.html')
